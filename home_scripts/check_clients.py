@@ -9,7 +9,9 @@ import os
 import subprocess
 
 def get_ips():
-    output = subprocess.check_output("ifconfig").decode("ascii").split("\n\n")
+    from subprocess import check_output
+    output = check_output("ifconfig")
+    output = output.decode("ascii").split("\n\n")
     connections = {}
     ip_lines = []
     for segment in output:
@@ -28,7 +30,7 @@ def get_ips():
 def get_clients(ip):
     import subprocess
     ip_to_sniff = ip[:ip.rfind(".")]
-    
+
     output = subprocess.check_output(["nmap","-sn", "{}.0/24".format(ip_to_sniff)])
     output = output.decode("ascii")
     clients = []
@@ -47,7 +49,7 @@ if __name__ == "__main__":
             clients[" ".join(connection)] = get_clients(connection[-1])
         else:
             print("Skipping {}.".format(connection))
-    
+
     for connection in sorted(clients.keys()):
         print("Clients on {}:".format(connection))
         pprint.pprint(clients[connection])
