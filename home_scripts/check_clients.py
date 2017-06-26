@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Script to list who is connected to the network.
 
@@ -40,8 +42,11 @@ if __name__ == "__main__":
     ips = get_ips()
     clients = {}
     for connection in ips:
-        if "eth" in connection[0].lower() or "wlan" in connection[0].lower():
+        connection_name = connection[0].lower()
+        if "eth" in connection_name or "wlan" in connection_name or connection_name.startswith("en"):
             clients[" ".join(connection)] = get_clients(connection[-1])
+        else:
+            print("Skipping {}.".format(connection))
     
     for connection in sorted(clients.keys()):
         print("Clients on {}:".format(connection))
