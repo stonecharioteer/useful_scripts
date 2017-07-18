@@ -52,3 +52,4 @@ if __name__ == "__main__":
     for connection in sorted(clients.keys()):
         print("Clients on {}:".format(connection))
         pprint.pprint(clients[connection])
+
