@@ -4,7 +4,6 @@ Script to list who is connected to the network.
 
 """
 
-import os
 import subprocess
 
 def get_ips():
