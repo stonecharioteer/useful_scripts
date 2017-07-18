@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+#!/home/vinay/anaconda3/bin/python
 """
 Script to list who is connected to the network.
 
